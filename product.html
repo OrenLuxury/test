@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | ORÉN LUXURY</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Product Page Specific Styles */
+        .product-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            min-height: 80vh;
+        }
+
+        .product-image-section {
+            background: var(--light-gray);
+            border: 1px solid rgba(201, 169, 97, 0.1);
+            aspect-ratio: 3/4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-details {
+            color: var(--white);
+        }
+
+        .product-category {
+            color: var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .product-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .product-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .size-selector {
+            margin-bottom: 2rem;
+        }
+
+        .size-label {
+            display: block;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .size-btn {
+            width: 50px;
+            height: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            color: var(--white);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .size-btn:hover, .size-btn.active {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-direction: column;
+        }
+
+        .btn-buy {
+            background: var(--gold);
+            color: var(--black);
+            text-align: center;
+            padding: 1.2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 2px;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-buy:hover {
+            background: var(--white);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .product-container {
+                grid-template-columns: 1fr;
+                padding-top: 6rem;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <nav>
+        <div class="nav-container">
+            <div class="brand-logo"><a href="index.html" style="color: var(--gold); text-decoration: none;">ORÉN LUXURY</a></div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#shop">Shop</a></li>
+                <li><a href="index.html#collections">Collections</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="index.html" style="color: white;"><svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg></a>
+            </div>
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div id="product-display" class="fade-in">
+        <div class="product-container" style="text-align: center; color: gray;">
+            <p>Loading Product...</p>
+        </div>
+    </div>
+
+    <footer id="about">
+        <div class="footer-container">
+            <div>
+                <div class="footer-brand">ORÉN</div>
+                <p class="footer-desc">Redefining luxury streetwear.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ORÉN LUXURY. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
