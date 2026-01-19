@@ -64,7 +64,7 @@ function renderSingleProduct() {
             // Create WhatsApp Link
             // Change '919876543210' to YOUR phone number
             const message = `Hi ORÉN, I would like to buy: ${product.name} - ${product.price}`;
-            const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
+            const whatsappUrl = `https://wa.me/917970718439?text=${encodeURIComponent(message)}`;
 
             productDisplay.innerHTML = `
                 <div class="product-container">
@@ -146,5 +146,6 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, observerOptions);
+
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
