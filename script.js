@@ -11,29 +11,51 @@ window.addEventListener('load', () => {
     }
 });
 
-// --- FETCH PRODUCT DATA ---
-async function getProducts() {
-    try {
-        const response = await fetch('products.json');
-        const products = await response.json();
-        return products;
-    } catch (error) {
-        console.error("Error loading products:", error);
-        return [];
+// --- PRODUCT DATABASE (INTERNAL) ---
+// We keep data here to ensure it loads without a server
+const products = [
+    {
+        id: 1,
+        name: "The Midnight Oversized",
+        price: "₹799",
+        image: "images/oversized_black.jpg",
+        category: "Best Seller",
+        description: "Crafted from heavy-weight 280 GSM cotton for the perfect drape. The Midnight Oversized Tee defines effortless luxury with its relaxed silhouette and premium finish.",
+        reviews: [
+            { user: "Arjun K.", text: "The quality is insane. Heavyweight but breathable. Fits perfectly.", rating: "★★★★★" },
+            { user: "Rahul S.", text: "Best oversized tee I've bought in India. Worth the price.", rating: "★★★★★" }
+        ]
+    },
+    {
+        id: 2,
+        name: "Abstract Mind Graphic Tee",
+        price: "₹699",
+        image: "images/anxiety_being.jpg",
+        category: "New Arrival",
+        description: "Wear your thoughts. This graphic piece features high-definition DTG printing on our signature soft-touch fabric. A statement piece for the bold.",
+        reviews: [
+            { user: "Ishaan M.", text: "The print quality is top-notch. Hasn't faded after 3 washes.", rating: "★★★★★" },
+            { user: "Kabir R.", text: "Love the design. Very unique.", rating: "★★★★★" }
+        ]
+    },
+    {
+        id: 3,
+        name: "Signature Back Print",
+        price: "₹799",
+        image: "images/oversized_back.jpg",
+        category: "Limited Edition",
+        description: "Business in the front, statement in the back. Our limited edition back-print series combines subtle branding with maximum impact.",
+        reviews: [
+            { user: "Vikram S.", text: "The back print turns heads. Love the minimalist front.", rating: "★★★★★" },
+            { user: "Rohan D.", text: "Perfect for layering. 10/10.", rating: "★★★★★" }
+        ]
     }
-}
+];
 
 // --- RENDER HOME PAGE GRID ---
-async function renderProducts() {
+function renderProducts() {
     const productGrid = document.getElementById('featuredGrid');
     if (productGrid) {
-        const products = await getProducts();
-        
-        if (products.length === 0) {
-            productGrid.innerHTML = '<p style="color:white; text-align:center;">Loading collection...</p>';
-            return;
-        }
-
         productGrid.innerHTML = products.map(product => `
             <a href="product.html?id=${product.id}" style="text-decoration: none; color: inherit;">
                 <div class="featured-item">
@@ -52,12 +74,11 @@ async function renderProducts() {
 }
 
 // --- RENDER SINGLE PRODUCT PAGE ---
-async function renderSingleProduct() {
+function renderSingleProduct() {
     const productDisplay = document.getElementById('product-display');
     if (productDisplay) {
         const urlParams = new URLSearchParams(window.location.search);
         const productId = urlParams.get('id');
-        const products = await getProducts();
         const product = products.find(p => p.id == productId);
 
         if (product) {
@@ -141,7 +162,7 @@ async function renderSingleProduct() {
 
 // --- INTERACTIVE FUNCTIONS ---
 let currentQty = 1;
-let currentSize = null; // No size selected by default
+let currentSize = null; // Forces selection
 
 function updateQty(change) {
     const qtyDisplay = document.getElementById('qty-display');
@@ -161,10 +182,10 @@ function selectSize(btn) {
 }
 
 function buyNow(id, name, price) {
-    // VALIDATION CHECK
+    // VALIDATION
     if (!currentSize) {
-        alert("Please select a size before adding to cart.");
-        return; 
+        alert("Please select a size first.");
+        return;
     }
 
     const productLink = window.location.href;
